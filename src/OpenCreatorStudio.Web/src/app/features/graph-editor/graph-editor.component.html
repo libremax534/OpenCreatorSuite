@@ -1,0 +1,118 @@
+<div class="graph-editor-container">
+  <!-- Header -->
+  <header class="editor-header glass-card">
+    <div class="header-left">
+      <h1 class="project-title">
+        {{ currentProject()?.name || 'Chargement...' }}
+      </h1>
+    </div>
+
+    <div class="header-right">
+      <button class="btn-icon" title="Sauvegarder">
+        <span class="material-icons">save</span>
+      </button>
+      <button class="btn-icon" title="Paramètres">
+        <span class="material-icons">settings</span>
+      </button>
+      <button class="btn-icon" (click)="logout()" title="Déconnexion">
+        <span class="material-icons">logout</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="editor-content">
+    <!-- Sidebar Left - Palette de composants -->
+    <aside class="sidebar-left glass-card">
+      <h3 class="sidebar-title">Composants</h3>
+      <div class="components-palette">
+        <div class="component-item" title="Print Request">
+          <span class="material-icons" style="color: #6366f1;">print</span>
+          <span>PRQ</span>
+        </div>
+        <div class="component-item" title="Label Check">
+          <span class="material-icons" style="color: #8b5cf6;">label</span>
+          <span>LBC</span>
+        </div>
+        <div class="component-item" title="Destination Request">
+          <span class="material-icons" style="color: #06b6d4;">place</span>
+          <span>DRQ</span>
+        </div>
+        <div class="component-item" title="Sort Report">
+          <span class="material-icons" style="color: #10b981;">assessment</span>
+          <span>SRE</span>
+        </div>
+        <div class="component-item" title="Information Request">
+          <span class="material-icons" style="color: #f59e0b;">info</span>
+          <span>IRQ</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Canvas Central -->
+    <main class="canvas-container">
+      @if (isLoading()) {
+        <div class="loading-overlay">
+          <div class="loading-spinner"></div>
+          <p>Chargement du projet...</p>
+        </div>
+      } @else if (errorMessage()) {
+        <div class="error-overlay">
+          <span class="material-icons">error_outline</span>
+          <p>{{ errorMessage() }}</p>
+        </div>
+      } @else {
+        <div class="canvas" id="graph-canvas">
+          <!-- Le canvas jsPlumb sera initialisé ici -->
+          @if (nodes().length === 0) {
+            <div class="empty-state">
+              <span class="material-icons">device_hub</span>
+              <h3>Aucun nœud</h3>
+              <p>Glissez un composant depuis la palette pour commencer</p>
+            </div>
+          }
+        </div>
+      }
+    </main>
+
+    <!-- Sidebar Right - Propriétés -->
+    <aside class="sidebar-right glass-card">
+      <h3 class="sidebar-title">Propriétés</h3>
+      @if (selectedNode()) {
+        <div class="properties-panel">
+          <div class="property-group">
+            <label>Nom</label>
+            <input 
+              type="text" 
+              class="input-glass" 
+              [value]="selectedNode()!.name"
+            />
+          </div>
+          <div class="property-group">
+            <label>Type</label>
+            <input 
+              type="text" 
+              class="input-glass" 
+              [value]="selectedNode()!.frameType"
+              readonly
+            />
+          </div>
+          <div class="property-group">
+            <label>Procédure Stockée</label>
+            <input 
+              type="text" 
+              class="input-glass" 
+              [value]="selectedNode()!.storedProcedureName || ''"
+              readonly
+            />
+          </div>
+        </div>
+      } @else {
+        <div class="empty-properties">
+          <span class="material-icons">touch_app</span>
+          <p>Sélectionnez un nœud pour voir ses propriétés</p>
+        </div>
+      }
+    </aside>
+  </div>
+</div>

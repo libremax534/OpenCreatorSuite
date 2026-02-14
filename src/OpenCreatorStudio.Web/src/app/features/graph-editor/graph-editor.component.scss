@@ -1,0 +1,215 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+.graph-editor-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, $bg-primary 0%, $bg-secondary 100%);
+  overflow: hidden;
+}
+
+// Header
+.editor-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 $spacing-lg;
+  margin: $spacing-md;
+  margin-bottom: 0;
+
+  .header-left {
+    .project-title {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: $text-primary;
+      margin: 0;
+    }
+  }
+
+  .header-right {
+    display: flex;
+    gap: $spacing-sm;
+
+    .btn-icon {
+      @include flex-center;
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: rgba($primary-color, 0.1);
+      border-radius: $radius-md;
+      color: $text-primary;
+      cursor: pointer;
+      transition: all $transition-base;
+
+      &:hover {
+        background: rgba($primary-color, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .material-icons {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+// Main Content
+.editor-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 250px 1fr 300px;
+  gap: $spacing-md;
+  padding: $spacing-md;
+  overflow: hidden;
+}
+
+// Sidebars
+.sidebar-left,
+.sidebar-right {
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-lg;
+  overflow-y: auto;
+  @include custom-scrollbar;
+
+  .sidebar-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $text-primary;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+// Components Palette
+.components-palette {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+
+  .component-item {
+    @include flex-center;
+    gap: $spacing-sm;
+    padding: $spacing-md;
+    background: rgba($bg-tertiary, 0.5);
+    border: 1px solid rgba($glass-border, 0.3);
+    border-radius: $radius-md;
+    color: $text-primary;
+    cursor: move;
+    transition: all $transition-base;
+
+    &:hover {
+      background: rgba($bg-tertiary, 0.8);
+      border-color: rgba($glass-border, 0.5);
+      transform: translateX(4px);
+    }
+
+    .material-icons {
+      font-size: 24px;
+    }
+
+    span:last-child {
+      font-weight: $font-weight-medium;
+    }
+  }
+}
+
+// Canvas
+.canvas-container {
+  position: relative;
+  overflow: hidden;
+  background: rgba($bg-tertiary, 0.3);
+  border: 1px solid rgba($glass-border, 0.2);
+  border-radius: $radius-lg;
+
+  .canvas {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .empty-state {
+    @include flex-center;
+    flex-direction: column;
+    height: 100%;
+    color: $text-muted;
+    gap: $spacing-md;
+
+    .material-icons {
+      font-size: 64px;
+      opacity: 0.5;
+    }
+
+    h3 {
+      font-size: $font-size-xl;
+      margin: 0;
+    }
+
+    p {
+      font-size: $font-size-sm;
+      margin: 0;
+    }
+  }
+
+  .loading-overlay,
+  .error-overlay {
+    @include flex-center;
+    flex-direction: column;
+    height: 100%;
+    gap: $spacing-lg;
+
+    .material-icons {
+      font-size: 48px;
+      color: $error-color;
+    }
+
+    p {
+      font-size: $font-size-base;
+      color: $text-secondary;
+    }
+  }
+}
+
+// Properties Panel
+.properties-panel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+
+  .property-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    label {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      color: $text-secondary;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
+.empty-properties {
+  @include flex-center;
+  flex-direction: column;
+  height: 200px;
+  color: $text-muted;
+  gap: $spacing-md;
+
+  .material-icons {
+    font-size: 48px;
+    opacity: 0.5;
+  }
+
+  p {
+    font-size: $font-size-sm;
+    text-align: center;
+    margin: 0;
+  }
+}
