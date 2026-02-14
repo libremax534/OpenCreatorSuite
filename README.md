@@ -1,169 +1,229 @@
-# OpenCreatorSuite
+# 🏛️ OpenCreatorSuite
 
-## 📋 Informations Générales
+**Migration d'OpenCreator WPF vers une architecture moderne Angular 20 + .NET 9**
 
-**Projet**: OpenCreatorStudio  
-**Type**: Migration OpenCreator (WPF C#) vers Angular  
-**Environnement**: Visual Studio 2022  
-**Architecture**: Clean Code / Clean Architecture  
-**Date**: Février 2026
+[![Angular](https://img.shields.io/badge/Angular-20-red)](https://angular.io/)
+[![.NET](https://img.shields.io/badge/.NET-9-purple)](https://dotnet.microsoft.com/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)](https://www.mysql.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/License-Propriétaire-yellow)](LICENSE)
 
-## 🎯 Objectif
+## 📝 Vue d'Ensemble
 
-OpenCreatorStudio est une migration complète d'OpenCreator (application WPF/C#) vers une stack moderne Angular + .NET 9. Il s'agit d'un éditeur graphique de workflow WCS (Warehouse Control System) permettant de créer des graphes de processus métier via drag & drop et de générer automatiquement des procédures stockées MySQL.
+OpenCreatorSuite est une plateforme de création d'éditeurs visuels de graphes avec génération automatique de procédures stockées MySQL. Migration complète d'une application WPF existante vers une architecture web moderne.
 
-## 🚀 Fonctionnalités Principales
+### 🎯 Objectifs du Projet
 
-- ✅ **Éditeur graphique de workflow** avec canvas infini (5000x5000px)
-- ✅ **10 types de nœuds WCS** (PRQ, LBC, DRQ, SRE, IRQ, IMP, BAL, PANEL, TAB, TEXT)
-- ✅ **Système de connexions conditionnelles** entre nœuds
-- ✅ **Génération automatique de procédures stockées MySQL**
-- ✅ **Authentification BCrypt** avec table utilisateurs MySQL
-- ✅ **Éditeur SQL intégré** avec Monaco Editor
-- ✅ **Système Undo/Redo** (20 niveaux)
-- ✅ **Persistance JSON** locale et base de données
-- ✅ **Déploiement et synchronisation MySQL**
-- ✅ **Design Glass** (glassmorphism)
+- ✅ **Modernisation technologique** : Migration WPF → Angular 20 + .NET 9
+- ✅ **Clean Architecture** : Séparation stricte en couches (Domain, Application, Infrastructure, API)
+- ✅ **Design glassmorphism** : Interface utilisateur moderne et élégante
+- ✅ **Éditeur graphique** : jsPlumb pour la manipulation visuelle de nœuds
+- ✅ **Éditeur SQL avancé** : Monaco Editor avec coloration syntaxique
+- ✅ **Génération automatique** : Procédures stockées MySQL depuis graphes
 
-## 🛠️ Stack Technologique
+## 🚀 Démarrage Rapide
 
-### Frontend
-- **Framework**: Angular 20
-- **Bibliothèque graphes**: jsPlumb Community Edition
-- **UI Components**: Angular Material
-- **State Management**: NgRx
-- **Styles**: SCSS avec thème Glass
-- **Éditeur SQL**: Monaco Editor
+### Prérequis
 
-### Backend
-- **Framework**: ASP.NET Core 9 Web API
-- **ORM**: Entity Framework Core
-- **Base de données**: MySQL 8.0+
-- **Authentification**: BCrypt.Net
-- **Architecture**: Clean Architecture (Domain, Application, Infrastructure)
+- **Node.js** 20+ et npm
+- **.NET 9 SDK**
+- **MySQL 8.0+**
+- **Git**
 
-## 📁 Structure du Projet
+### Installation
 
+```bash
+# Cloner le repository
+git clone https://github.com/libremax534/OpenCreatorSuite.git
+cd OpenCreatorSuite
+
+# Installation frontend (Angular)
+cd src/OpenCreatorStudio.Web
+npm install
+npm start
+# → http://localhost:4200
+
+# Installation backend (.NET)
+cd ../OpenCreatorStudio.API
+dotnet restore
+dotnet run --project API/OpenCreatorStudio.API.csproj
+# → https://localhost:5001
 ```
-OpenCreatorSuite/
-├── Documentation/              # Documentation complète
-│   ├── CAHIER-DES-CHARGES.md
-│   ├── ARCHITECTURE-TECHNIQUE.md
-│   ├── FONCTIONNALITES.md
-│   └── ...
-├── src/
-│   ├── OpenCreatorStudio.Web/  # Application Angular
-│   └── OpenCreatorStudio.API/  # Backend .NET 9
-└── README.md
+
+### Configuration MySQL
+
+```bash
+# Créer la base de données
+mysql -u root -p
+CREATE DATABASE opencreator CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+# Configurer la chaîne de connexion dans appsettings.json
+cd src/OpenCreatorStudio.API/API
+# Editer appsettings.json
 ```
 
 ## 📚 Documentation
 
-La documentation complète du projet se trouve dans le dossier `Documentation/` :
+La documentation complète est disponible dans le dossier [`/Documentation`](./Documentation):
 
-- **CAHIER-DES-CHARGES-COMPLET.md** - Spécifications complètes du projet
-- **ARCHITECTURE-TECHNIQUE.md** - Architecture et stack technique
-- **FONCTIONNALITES-DETAILLEES.md** - Description détaillée des fonctionnalités
-- **DESIGN-SYSTEM.md** - Spécifications du design Glass
-- **ROADMAP.md** - Planification du développement
-- **POINTS-D-ATTENTION.md** - Recommandations et bonnes pratiques
+### Documents Principaux
 
-## 🔧 Installation
+1. **[Cahier des Charges Complet](./Documentation/CAHIER-DES-CHARGES-COMPLET.md)**
+   - Spécifications fonctionnelles
+   - Standards de développement
+   - Méthodologie Clean Code
 
-### Prérequis
-- Node.js 20+
-- Angular CLI 20+
-- .NET 9 SDK
-- MySQL 8.0+
-- Visual Studio 2022
+2. **[Architecture Technique](./Documentation/ARCHITECTURE-TECHNIQUE.md)**
+   - Stack technologique détaillée
+   - Structure des projets
+   - Patterns et bonnes pratiques
 
-### Configuration
+3. **[Design System Glass](./Documentation/DESIGN-SYSTEM.md)**
+   - Variables SCSS
+   - Mixins réutilisables
+   - Composants UI
 
-```bash
-# Clone du repository
-git clone https://github.com/libremax534/OpenCreatorSuite.git
-cd OpenCreatorSuite
+4. **[Roadmap](./Documentation/ROADMAP.md)**
+   - Phase 1: POC (4 semaines)
+   - Phase 2: Fonctionnalités Core (6 semaines)
+   - Phase 3: Intégration MySQL (4 semaines)
 
-# Installation Frontend
-cd src/OpenCreatorStudio.Web
-npm install
+5. **[Points d'Attention & Recommandations](./Documentation/POINTS-ATTENTION-RECOMMANDATIONS.md)**
+   - Choix techniques justifiés
+   - Pièges à éviter
+   - Optimisations performance
 
-# Installation Backend
-cd ../OpenCreatorStudio.API
-dotnet restore
-```
+### Analyses Détaillées
 
-## 🏃 Démarrage
+- **Analyse SQL Editor** (36KB) - Éditeur de procédures stockées
+- **Analyse StoredProcedureCatalog** (24KB) - Catalogue des procédures
 
-### Frontend Angular
-```bash
-cd src/OpenCreatorStudio.Web
-ng serve
-# Application accessible sur http://localhost:4200
-```
+## 🏛️ Architecture
 
-### Backend .NET
-```bash
-cd src/OpenCreatorStudio.API
-dotnet run
-# API accessible sur https://localhost:5001
-```
-
-## 📝 Développement
-
-### Philosophie de Code
-
-Le projet suit les principes de **Clean Code** et **Clean Architecture** :
-
-- **Séparation des responsabilités** : Domain, Application, Infrastructure
-- **Code commenté** : Explications claires pour débutants
-- **Commentaires alignés** : Lisibilité optimale
-- **Tests unitaires** : Couverture minimale 80%
-
-### Conventions de Commit
+### Frontend (Angular 20)
 
 ```
-feat: Nouvelle fonctionnalité
-fix: Correction de bug
-docs: Documentation
-style: Formatage, style
-refactor: Refactoring
-test: Ajout de tests
-chore: Tâches de maintenance
+src/OpenCreatorStudio.Web/
+├── src/
+│   ├── app/
+│   │   ├── core/              # Services, guards, interceptors
+│   │   ├── features/          # Modules fonctionnels
+│   │   │   ├── authentication/
+│   │   │   ├── graph-editor/
+│   │   │   └── sql-editor/
+│   │   └── shared/           # Composants réutilisables
+│   └── assets/
+│       └── styles/           # Thème Glass SCSS
+└── package.json
 ```
 
-## 🗓️ Roadmap
+### Backend (.NET 9)
 
-### ✅ Phase 1: POC (4 semaines)
-- Architecture Angular + Backend
-- Authentification BCrypt
-- Canvas avec jsPlumb
-- Création de nœuds basiques
+```
+src/OpenCreatorStudio.API/
+├── Domain/                  # Entités métier
+│   ├── Entities/
+│   └── Enums/
+├── Application/             # Logique métier
+│   ├── Interfaces/
+│   ├── Services/
+│   └── DTOs/
+├── Infrastructure/          # Accès aux données
+│   ├── Data/
+│   └── MySQL/
+└── API/                     # Controllers, Startup
+```
 
-### 🔨 Phase 2: Fonctionnalités Core (6 semaines)
-- 10 types de nœuds complets
-- Panneau propriétés
-- Éditeur SQL Monaco
-- Système Undo/Redo
+## 🛠️ Technologies Clés
 
-### 🔨 Phase 3: Intégration MySQL (4 semaines)
-- Déploiement vers MySQL
-- Génération procédures stockées
-- Synchronisation complète
+### Frontend
+- **Angular 20** - Framework principal
+- **jsPlumb Community** - Manipulation de graphes
+- **Monaco Editor** - Éditeur SQL avec coloration syntaxique
+- **Angular Material** - Composants UI
+- **NgRx** - Gestion d'état
+- **SCSS** - Styles avec thème Glass
 
-## 👥 Contributeurs
+### Backend
+- **ASP.NET Core 9** - API REST
+- **Entity Framework Core** - ORM
+- **MySQL 8.0+** - Base de données
+- **BCrypt.Net** - Sécurité des mots de passe
+- **Swashbuckle** - Documentation Swagger
 
-- **Fournier Laurent** - Développeur principal - [libremax534](https://github.com/libremax534)
+## 📊 Statut du Projet
 
-## 📄 Licence
+### ✅ Phase 0 : Initialisation (Terminé)
 
-Ce projet est sous licence privée.
+- [x] Structure du repository
+- [x] Documentation complète (5 documents principaux)
+- [x] Configuration Angular 20
+- [x] Configuration .NET 9 Clean Architecture
+- [x] Thème Glass UI complet (SCSS)
+- [x] Module d'authentification
+- [x] Entités du domaine
+
+### 🚧 Phase 1 : POC (En cours)
+
+- [x] Composant de connexion avec design Glass
+- [ ] Éditeur graphique de base (jsPlumb)
+- [ ] CRUD nœuds et connexions
+- [ ] Propriétés de nœuds
+- [ ] Sauvegarde/Chargement de projets
+
+### 📅 Phase 2 : Fonctionnalités Core (Planifié)
+
+- [ ] Éditeur SQL avec Monaco
+- [ ] Catalogue de procédures stockées
+- [ ] Générateur de SQL
+- [ ] Journal de projet
+- [ ] Palette de composants
+
+### 📅 Phase 3 : Intégration MySQL (Planifié)
+
+- [ ] Déploiement procédures vers MySQL
+- [ ] Exécution et test de procédures
+- [ ] Historique des déploiements
+- [ ] Rollback de versions
+
+## 📖 Commit History
+
+### Commits Récents
+
+1. **Commit 1** - README principal
+2. **Commit 2** - Documentation complète (5 fichiers)
+3. **Commit 3** - Index documentation
+4. **Commit 4** - Structure Angular (package.json, angular.json, tsconfig)
+5. **Commit 5** - Structure .NET Solution
+6. **Commit 6** - Styles SCSS Glass Theme + Environnements
+7. **Commit 7** - Composants Angular (App, Auth, Guards, Interceptors)
+8. **Commit 8** - Couche Domain .NET (Entités, Enums)
+
+### Total : 30+ fichiers commités
+
+## 👥 Équipe
+
+- **Fournier Laurent** - Architecte / Développeur Principal
+- **Projet source** : [OpenCreator WPF](https://github.com/libremax534/OpenCreator.git)
+
+## 🔗 Liens Utiles
+
+- **Frontend** : http://localhost:4200
+- **Backend API** : https://localhost:5001
+- **Swagger UI** : https://localhost:5001/swagger
+- **Projet WPF original** : https://github.com/libremax534/OpenCreator.git
+
+## 📝 Licence
+
+Ce projet est sous licence propriétaire. Tous droits réservés.
 
 ## 📧 Contact
 
-- Email: contact@fournierlaurent.com
-- GitHub: [@libremax534](https://github.com/libremax534)
+Pour toute question concernant le projet :
+- **Email** : fournier.laurent@example.com
+- **GitHub Issues** : [Créer une issue](https://github.com/libremax534/OpenCreatorSuite/issues)
 
 ---
 
-**Projet OpenCreatorSuite** - Migration OpenCreator WPF vers Angular 20 + .NET 9
+**Dernière mise à jour** : 14 février 2026  
+**Version** : 1.0.0-dev
