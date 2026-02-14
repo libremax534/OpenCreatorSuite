@@ -1,0 +1,126 @@
+@import '../../../../assets/styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.login-container {
+  @include flex-center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, $bg-primary 0%, $bg-secondary 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Effet d'arrière-plan animé
+  &::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba($primary-color, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    top: -250px;
+    right: -250px;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba($secondary-color, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    bottom: -200px;
+    left: -200px;
+    animation: float 8s ease-in-out infinite reverse;
+  }
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: $spacing-2xl;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+
+  .logo-text {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    background: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: $spacing-xs;
+  }
+
+  .logo-subtitle {
+    font-size: $font-size-lg;
+    color: $text-secondary;
+    font-weight: $font-weight-medium;
+  }
+}
+
+.login-form {
+  .form-group {
+    margin-bottom: $spacing-lg;
+
+    label {
+      display: block;
+      color: $text-secondary;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+      margin-bottom: $spacing-sm;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+
+  .error-message {
+    background: rgba($error-color, 0.1);
+    border: 1px solid rgba($error-color, 0.3);
+    border-radius: $radius-md;
+    padding: $spacing-sm $spacing-md;
+    color: lighten($error-color, 20%);
+    font-size: $font-size-sm;
+    margin-bottom: $spacing-lg;
+    text-align: center;
+  }
+
+  .login-button {
+    width: 100%;
+    padding: $spacing-md;
+    font-size: $font-size-base;
+    position: relative;
+
+    .loading-spinner {
+      @include loading-spinner(20px, white);
+      margin: 0 auto;
+    }
+  }
+}
+
+.login-footer {
+  margin-top: $spacing-xl;
+  text-align: center;
+
+  .version-text {
+    color: $text-muted;
+    font-size: $font-size-xs;
+  }
+}
+
+// Animations
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
